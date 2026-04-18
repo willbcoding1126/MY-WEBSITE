@@ -3,46 +3,279 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>Our Amazing Family</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      text-align: center;
-      padding: 100px 20px;
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
     }
 
-    h1 {
-      color: #222;
-      font-size: 48px;
-      margin-bottom: 10px;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      background: linear-gradient(-45deg, #ff4d6d, #ff9e00, #7b2cbf, #00b4d8);
+      background-size: 400% 400%;
+      animation: gradientMove 14s ease infinite;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    p {
-      color: #555;
-      font-size: 20px;
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    button {
-      margin-top: 20px;
-      padding: 12px 22px;
-      font-size: 16px;
-      border: none;
-      background: black;
-      color: white;
-      cursor: pointer;
-      border-radius: 8px;
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.18);
+      padding: 24px;
+      position: relative;
     }
 
-    button:hover {
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 35px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.13);
+      padding: 18px 22px;
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+    }
+
+    .sparkle {
+      font-size: 1.5rem;
+      display: inline-block;
+      animation: bounce 2.2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      padding: 20px 0 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 24px;
+      padding: 26px 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.25);
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card .emoji {
+      font-size: 2.3rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .family-banner {
+      margin: 10px 0 35px;
+      background: rgba(255,255,255,0.17);
+      border-radius: 22px;
+      padding: 24px;
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+    }
+
+    .family-banner strong {
+      color: #fff4a3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 10px 38px;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .floating {
+      position: fixed;
+      bottom: -40px;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: floatUp linear forwards;
       opacity: 0.9;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .content-layer {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badges {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero p,
+      .family-banner,
+      .card {
+        padding: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My Website</h1>
-  <p>This site is live on GitHub Pages.</p>
-  <button onclick="alert('Your website is working!')">Click Me</button>
+  <div class="overlay">
+    <div class="container content-layer">
+      <section class="hero">
+        <h1>
+          Our Amazing Family <span class="sparkle">✨</span>
+        </h1>
+        <p>
+          This is a fun little website celebrating the best kids in the world —
+          <strong>Aria</strong> and <strong>Jordan</strong> — and the most beautiful,
+          loving wife in the world, <strong>Lindsey</strong>. This family is full of
+          talent, love, joy, and big dreams!
+        </p>
+        <div class="hero-badges">
+          <div class="badge">Aria = Future Dance Champion</div>
+          <div class="badge">Jordan = Future MLB Home Run Star</div>
+          <div class="badge">Lindsey = Family Heart</div>
+        </div>
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <span class="emoji">💃</span>
+          <h2>Aria</h2>
+          <p>
+            Aria is going to be a <strong>champion dancer</strong>! She shines with
+            energy, talent, grace, and confidence. Every step she takes brings more
+            sparkle into the world.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="emoji">⚾</span>
+          <h2>Jordan</h2>
+          <p>
+            Jordan is going to crush <strong>home run records in the MLB</strong>!
+            He has the power, heart, focus, and superstar spirit to do amazing things
+            on and off the field.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="emoji">💖</span>
+          <h2>Lindsey</h2>
+          <p>
+            Lindsey is the most <strong>beautiful and loving wife</strong> in the
+            world. She brings warmth, strength, and happiness to the whole family,
+            and makes every day brighter.
+          </p>
+        </div>
+      </section>
+
+      <section class="family-banner">
+        <strong>Together, Aria, Jordan, and Lindsey make life colorful, exciting, and full of love.</strong>
+        <br />
+        This page was made to celebrate a one-of-a-kind family with huge dreams,
+        big hearts, and unforgettable smiles.
+      </section>
+
+      <footer>
+        Made with love for the best family ever ❤️
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const icons = ["✨", "💖", "⭐", "⚾", "💃", "🎉", "❤️", "🌈"];
+
+    function createFloatingIcon() {
+      const icon = document.createElement("div");
+      icon.className = "floating";
+      icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+      icon.style.left = Math.random() * 100 + "vw";
+      icon.style.animationDuration = 5 + Math.random() * 5 + "s";
+      icon.style.fontSize = 16 + Math.random() * 22 + "px";
+      document.body.appendChild(icon);
+
+      setTimeout(() => {
+        icon.remove();
+      }, 10000);
+    }
+
+    setInterval(createFloatingIcon, 500);
+  </script>
 </body>
 </html>
